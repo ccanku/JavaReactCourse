@@ -7,7 +7,9 @@ import org.springframework.stereotype.Service;
 
 import kodlama.io.hrms.business.abstracts.CandidateService;
 import kodlama.io.hrms.core.utilities.results.DataResult;
+import kodlama.io.hrms.core.utilities.results.Result;
 import kodlama.io.hrms.core.utilities.results.SuccessDataResult;
+import kodlama.io.hrms.core.utilities.results.SuccessResult;
 import kodlama.io.hrms.dataAccess.abstracts.CandidateDao;
 import kodlama.io.hrms.entities.concretes.Candidate;
 
@@ -25,6 +27,12 @@ public class CandidateManager implements CandidateService{
 	@Override
 	public DataResult<List<Candidate>> getAll() {
 		return new SuccessDataResult<List<Candidate>>(this.candidateDao.findAll(),"İş arayanlar listelendi.");
+	}
+
+	@Override
+	public Result addCandidate(Candidate candidate) {
+		this.candidateDao.save(candidate);
+		return new SuccessResult("İş arayan eklendi.");
 	}
 	
 	
