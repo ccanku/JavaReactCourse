@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kodlama.io.hrms.business.abstracts.JobPositionService;
 import kodlama.io.hrms.core.utilities.results.DataResult;
+import kodlama.io.hrms.core.utilities.results.ErrorResult;
 import kodlama.io.hrms.core.utilities.results.Result;
 import kodlama.io.hrms.core.utilities.results.SuccessDataResult;
 import kodlama.io.hrms.core.utilities.results.SuccessResult;
@@ -36,8 +37,13 @@ public class JobPositionManager implements JobPositionService{
 
 	@Override
 	public Result addJobPosition(JobPosition jobPosition) {
-		this.job_positionsDao.save(jobPosition);
-		return new SuccessResult("Pozisyon eklendi.");
+		if(job_positionsDao.findAll().contains(jobPosition)) {
+			return new ErrorResult("Bu pozisyon listede mevcut.");
+		}else {
+			this.job_positionsDao.save(jobPosition);
+			return new SuccessResult("Pozisyon eklendi.");
+		}
+		
 	}
 
 }

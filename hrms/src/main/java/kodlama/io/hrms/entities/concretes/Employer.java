@@ -6,14 +6,12 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import kodlama.io.hrms.entities.abstracts.User;
-import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name="employers")
 @NoArgsConstructor
 @PrimaryKeyJoinColumn(name="userid")
-@AllArgsConstructor
 public class Employer extends User{
 	
 	@Column(name="firmname")
@@ -22,6 +20,15 @@ public class Employer extends User{
 	private String webSite;
 	@Column(name="phonenumber")
 	private String phoneNumber;
+	@Column(name="isverifiedbystaff")
+	private boolean isVerifiedByStaff;
+	
+	public Employer(String firmName, String webSite, String phoneNumber) {
+		super();
+		this.firmName = firmName;
+		this.webSite = webSite;
+		this.phoneNumber = phoneNumber;
+	}
 	
 	public String getFirmName() {
 		return firmName;
@@ -41,6 +48,13 @@ public class Employer extends User{
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
+	public boolean isVerifiedByStaff() {
+		return isVerifiedByStaff;
+	}
+	public void setVerifiedByStaff(boolean isVerifiedByStaff) {
+		this.isVerifiedByStaff = isVerifiedByStaff;
+	}
+	
 	
 	
 }
