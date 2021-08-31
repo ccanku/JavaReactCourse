@@ -53,13 +53,6 @@ public class EmployerManager implements EmployerService{
 		}
 		
 	}
-	
-	public void verifyEmployer(Employer employer) {
-		employer.setVerifiedByStaff(true);
-	}
-	
-	public void unverifyEmployer(Employer employer) {
-		employer.setVerifiedByStaff(false);
-	}
+
 	
 }
