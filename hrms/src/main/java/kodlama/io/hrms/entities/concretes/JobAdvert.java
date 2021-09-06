@@ -1,6 +1,6 @@
 package kodlama.io.hrms.entities.concretes;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,6 +21,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name="jobadverts")
 public class JobAdvert {
 	
 	@Column(name="id")
@@ -39,8 +43,23 @@ public class JobAdvert {
 	@Column(name="MaxWage")
 	private int maxWage;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="EmployerId")
 	private Employer employer;
+
+	public JobAdvert(int id, String jobPositionName, String jobDescription, String city, int personnelInNeed,
+			Date deadlineDate, Employer employer) {
+		super();
+		this.id = id;
+		this.jobPositionName = jobPositionName;
+		this.jobDescription = jobDescription;
+		this.city = city;
+		this.personnelInNeed = personnelInNeed;
+		this.deadlineDate = deadlineDate;
+		this.employer = employer;
+	}
+	
+	
 	
 }

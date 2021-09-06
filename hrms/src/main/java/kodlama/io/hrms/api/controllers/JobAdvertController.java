@@ -14,6 +14,7 @@ import kodlama.io.hrms.business.abstracts.JobAdvertService;
 import kodlama.io.hrms.core.utilities.results.DataResult;
 import kodlama.io.hrms.core.utilities.results.Result;
 import kodlama.io.hrms.entities.concretes.JobAdvert;
+import kodlama.io.hrms.entities.dtos.JobAdvertDto;
 
 @RestController
 @RequestMapping("/api/jobadverts")
@@ -28,8 +29,8 @@ public class JobAdvertController {
 	}
 
 	@PostMapping("/add")
-	Result addJobAdvert(@RequestBody JobAdvert jobAdvert) {
-		return this.jobAdvertService.addJobAdvert(jobAdvert);
+	Result addJobAdvert(@RequestBody JobAdvertDto jobAdvertDto) {
+		return this.jobAdvertService.addJobAdvert(jobAdvertDto);
 	}
 	
 	@GetMapping("/getbyemployername")
